@@ -1,10 +1,16 @@
+Links:- sketchfab / gltf.pmnd.rs
 --------------------------------
 Setup
 --------------------------------
 1. create src/app.jsx /main.jsx and put boiler-plate code.
 2. install Tailwind and initialize it by setting up index.css
 3. setup react-router-dom
-4. 
+4. install @react-three/fiber
+5. install @react-three/drei
+6. install @react-spring/three
+7. import asset.zip files from github
+8. 
+
 
 
 ---------------------------------
@@ -18,4 +24,17 @@ Navbar
 Pages
 ---------------------------------
 1. create different routes pages 
-2. 
+
+
+---------------------------------
+Home.jsx
+---------------------------------
+1. create a section tag and define canvas(root component for 3d scene) inside it
+2. apply classname and camera limit properties to canvas
+3. define fallback loader using drei
+4. convert glb file into jsx component
+5. made the necessary changes in island.jsx file and import it to Home.jsx component.
+//Note:- add assetsInclude: ['**/*.glb'] into vite.config file  and add 'src' inside ignorePatterns [].
+6. set 3d-model render acording to screensize function in home.jsx
+7. create plane,sky and bird components 
+8. 

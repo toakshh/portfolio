@@ -1,5 +1,6 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import { Home, About, Contact, Project } from "./pages";
 // const router = createBrowserRouter([
 //     {
 //       path: "/",
@@ -27,10 +28,10 @@ const App = () => {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={"HOME"} />
-          <Route path="/about" element={"About"} />
-          <Route path="/contacts" element={"Contacts"} />
-          <Route path="/projects" element={"Projects"} />
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/project" element={<Project />} />
         </Routes>
       </Router>
     </main>
