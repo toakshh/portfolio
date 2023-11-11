@@ -1,0 +1,21 @@
+--------------------------------
+Setup
+--------------------------------
+1. create src/app.jsx /main.jsx and put boiler-plate code.
+2. install Tailwind and initialize it by setting up index.css
+3. setup react-router-dom
+4. 
+
+
+---------------------------------
+Navbar
+--------------------------------
+1. define Navlinks for better seo
+2. create logo and other navigation links
+
+
+---------------------------------
+Pages
+---------------------------------
+1. create different routes pages 
+2. 
