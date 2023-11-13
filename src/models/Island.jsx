@@ -41,9 +41,9 @@ const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
     if (isRotating) {
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
       const delta = (clientX - lastX.current) / viewport.width;
-      islandRef.current.rotation.y += delta * 0.01 * Math.PI;
+      islandRef.current.rotation.y += delta * 0.01 * Math.PI * 2;
       lastX.current = clientX;
-      rotationSpeed.current = delta * 0.01 * Math.PI;
+      rotationSpeed.current = delta * 0.01 * Math.PI * 2;
     }
   };
 
@@ -51,12 +51,12 @@ const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
   const handleKeyDown = (e) => {
     if (e.key === "ArrowLeft") {
       if (!isRotating) setIsRotating(true);
-      islandRef.current.rotation.y += 0.05 * Math.PI;
-      rotationSpeed.current = 0.007;
+      // islandRef.current.rotation.y += 0.05 * Math.PI;
+      rotationSpeed.current = 0.007 * 5;
     } else if (e.key === "ArrowRight") {
       if (!isRotating) setIsRotating(true);
-      islandRef.current.rotation.y -= 0.05 * Math.PI;
-      rotationSpeed.current = -0.007;
+      // islandRef.current.rotation.y -= 0.05 * Math.PI;
+      rotationSpeed.current = -0.007 * 5;
     }
   };
 
@@ -67,18 +67,22 @@ const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
   };
 
   useEffect(() => {
-    // we are not touching the regular dom directly. we are dealing with canvas.
     const canvas = gl.domElement;
     canvas.addEventListener("pointerdown", handlePointerDown);
     canvas.addEventListener("pointerup", handlePointerUp);
     canvas.addEventListener("pointermove", handlePointerMove);
+    canvas.addEventListener("touchstart", handlePointerDown);
+    canvas.addEventListener("touchend", handlePointerUp);
+    canvas.addEventListener("touchmove", handlePointerMove);
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("keyup", handleKeyUp);
-
     return () => {
       canvas.removeEventListener("pointerup", handlePointerUp);
       canvas.removeEventListener("pointerdown", handlePointerDown);
       canvas.removeEventListener("pointermove", handlePointerMove);
+      canvas.removeEventListener("touchend", handlePointerUp);
+      canvas.removeEventListener("touchstart", handlePointerDown);
+      canvas.removeEventListener("touchmove", handlePointerMove);
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("keyup", handleKeyUp);
     };
