@@ -38,5 +38,7 @@ Home.jsx
 6. set 3d-model render acording to screensize function in home.jsx
 7. create plane,sky and bird components 
 8. setup the prespective and rotations to those elements.
-9. Add eventlistener in useEffect to listen to move movement for rotation.
-10. 
+9. Add eventlistener in useEffect to listen to move movement for rotation of Island.
+10. setup plane liveliness for rotations.
+11. setup sky movement on rotation.
+12. 
