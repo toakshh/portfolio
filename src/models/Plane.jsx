@@ -6,13 +6,17 @@ const Plane = ({ isRotating, ...props }) => {
   const { scene, animations } = useGLTF(planeScene);
   const { actions } = useAnimations(animations, ref);
 
+  // useEffect(() => {
+  //   if (isRotating) {
+  //     actions["Take 001"].play();
+  //   } else {
+  //     actions["Take 001"].stop();
+  //   }
+  // }, [actions, isRotating]);
+
   useEffect(() => {
-    if (isRotating) {
-      actions["Take 001"].play();
-    } else {
-      actions["Take 001"].stop();
-    }
-  }, [actions, isRotating]);
+    actions["Take 001"].play();
+  }, []);
 
   return (
     <mesh {...props} ref={ref}>

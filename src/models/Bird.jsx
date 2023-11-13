@@ -12,34 +12,57 @@ const Bird = () => {
   }, []);
 
   useFrame(({ clock, camera }) => {
-    // birdRef.current.rotation.x += 0.15 * delta;
-
-    // update Y position make it move in a sine wave
     birdRef.current.position.y = Math.sin(clock.elapsedTime) * 0.2 + 2;
 
-    // track of bird position
-    if (birdRef.current.position.x > camera.position.x + 10) {
-      // rotate 180deg
+    const birdPosition = birdRef.current.position.x;
+
+    if (birdPosition > camera.position.x + 10) {
       birdRef.current.rotation.y = Math.PI;
-    } else if (birdRef.current.position.x < camera.position.x - 10) {
-      // change direction forward
+      birdRef.current.position.x = camera.position.x + 10;
+    } else if (birdPosition < camera.position.x - 10) {
       birdRef.current.rotation.y = 0;
+      birdRef.current.position.x = camera.position.x - 10;
     }
 
-    // update X & Z position acording for movements
     if (birdRef.current.rotation.y === 0) {
-      // moving forward
       birdRef.current.position.x += 0.01;
       birdRef.current.position.z -= 0.01;
     } else {
-      // moving backward
       birdRef.current.position.x -= 0.01;
       birdRef.current.position.z += 0.01;
     }
   });
 
+  // useFrame(({ clock, camera }) => {
+  //   // birdRef.current.rotation.x += 0.15 * delta;
+
+  //   // update Y position make it move in a sine wave
+  //   birdRef.current.position.y = Math.sin(clock.elapsedTime) * 0.2 + 2;
+
+  //   // track of bird position
+  //   if (birdRef.current.position.x > camera.position.x + 10) {
+  //     // rotate 180deg
+  //     birdRef.current.rotation.y = Math.PI;
+  //   } else if (birdRef.current.position.x < camera.position.x - 10) {
+  //     // change direction forward
+  //     birdRef.current.rotation.y = 0;
+  //   }
+
+  //   // update X & Z position acording for movements
+  //   if (birdRef.current.rotation.y === 0) {
+  //     // moving forward
+  //     birdRef.current.position.x += 0.01;
+  //     birdRef.current.position.z -= 0.01;
+  //   } else {
+  //     // moving backward
+  //     birdRef.current.position.x -= 0.01;
+  //     birdRef.current.position.z += 0.01;
+  //   }
+  // });
+  // {[-5, 2, 1]}
+
   return (
-    <mesh position={[-5, 2, 1]} scale={[0.003, 0.003, 0.003]} ref={birdRef}>
+    <mesh position={[-5, 5, 1]} scale={[0.003, 0.003, 0.003]} ref={birdRef}>
       <primitive object={scene} />
     </mesh>
   );
