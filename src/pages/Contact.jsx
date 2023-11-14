@@ -1,22 +1,31 @@
-import React, { useRef, useState } from "react";
+import React, { Suspense, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import { Canvas } from "@react-three/fiber";
+import Loader from "../components/Loader";
+import Fox from "../models/Fox";
+import useAlert from "../hooks/useAlert";
+import Alert from "../components/Alert";
+
 const Contact = () => {
   const formRef = useRef(null);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [isLoading, setIsLoading] = useState(false);
-  // const { service_id, template_id, public_key } = import.meta.env
-  //   .VITE_APP_EMAILJS;
+  const [currentAnimation, setCurrentAnimation] = useState("idle");
 
-  // console.log(service_id);
+  const { alert, showAlert, hideAlert } = useAlert();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-  const handleFocus = () => {};
-  const handleBlur = () => {};
+  const handleFocus = () => setCurrentAnimation("walk");
+
+  const handleBlur = () => setCurrentAnimation("idle");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
+    setCurrentAnimation("hit");
+
     emailjs
       .send(
         import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
@@ -32,68 +41,99 @@ const Contact = () => {
       )
       .then(() => {
         setIsLoading(false);
-        // TODO: show success message
-        // TODO: Hide the alert
+        //show success message
+        showAlert({
+          show: true,
+          text: "Thanks for the message",
+          type: "success",
+        });
 
-        setForm({ name: "", email: "", message: "" });
+        setTimeout(() => {
+          //Hide the alert
+          hideAlert(false);
+          setForm({ name: "", email: "", message: "" });
+          setCurrentAnimation("idle");
+        }, [3000]);
       })
       .catch((e) => {
         setIsLoading(false);
+        setCurrentAnimation("idle");
         console.log(e);
-        // TODO: Show error msg
+        // Show error msg
+        showAlert({
+          show: true,
+          text: "Oops! It seems your message wasn't sent successfully. Try again or mail at : toakshh@gmail.com",
+          type: "danger",
+        });
       });
   };
+
   return (
     <section className="relative flex lg:flex-row flex-col max-container">
+      {alert.show && <Alert {...alert} />}
+      {/* <Alert {...alert} /> */}
       <div className="flex-1 min-w-[50%] flex flex-col">
         <h1 className="head-text">Get in Touch</h1>
         <form
           className="w-full flex flex-col gap-7 mt-14"
           onSubmit={handleSubmit}
+          ref={formRef}
         >
-          <label htmlFor="name" className="text-black-500 font-semibold">
-            Name
-          </label>
-          <input
-            type="text"
-            name="name"
-            className="input"
-            id="name"
-            value={form.name}
-            onChange={handleChange}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            placeholder="Enter your name"
-          />
-          <label htmlFor="email" className="text-black-500 font-semibold">
-            email
-          </label>
-          <input
-            type="text"
-            name="email"
-            className="input"
-            id="email"
-            value={form.email}
-            onChange={handleChange}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            placeholder="Enter your email"
-          />
-          <label htmlFor="message" className="text-black-500 font-semibold">
-            message
-          </label>
-          <textarea
-            type="text"
-            name="message"
-            rows={4}
-            className="textarea"
-            id="message"
-            value={form.message}
-            onChange={handleChange}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            placeholder="Enter your message"
-          />
+          <div>
+            <label htmlFor="name" className="text-black-500 font-semibold">
+              Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              className="input"
+              id="name"
+              value={form.name}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              required
+              autoComplete="on"
+              onBlur={handleBlur}
+              placeholder="Enter your name"
+            />
+          </div>
+          <div>
+            <label htmlFor="email" className="text-black-500 font-semibold  ">
+              Email
+            </label>
+            <input
+              type="text"
+              name="email"
+              className="input"
+              id="email"
+              required
+              autoComplete="on"
+              value={form.email}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              placeholder="Enter your email"
+            />
+          </div>
+          <div>
+            <label htmlFor="message" className="text-black-500 font-semibold">
+              Message
+            </label>
+            <textarea
+              type="text"
+              name="message"
+              rows={4}
+              className="textarea"
+              id="message"
+              required
+              autoComplete="on"
+              value={form.message}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              placeholder="Enter your message"
+            />
+          </div>
           <button
             type="submit"
             className="btn"
@@ -104,6 +144,20 @@ const Contact = () => {
             {isLoading ? "Sending..." : "Send Message"}
           </button>
         </form>
+      </div>
+      <div className="lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px]">
+        <Canvas camera={{ position: [0, 0, 5], fov: 75, near: 0.1, far: 1000 }}>
+          <directionalLight intensity={2.5} position={[0, 0, 1]} />
+          <ambientLight intensity={0.5} />
+          <Suspense fallback={<Loader />}>
+            <Fox
+              currentAnimation={currentAnimation}
+              position={[0.5, 0.35, 0]}
+              rotation={[12.6, -0.6, 0]}
+              scale={[0.5, 0.5, 0.5]}
+            />
+          </Suspense>
+        </Canvas>
       </div>
     </section>
   );

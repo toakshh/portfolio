@@ -49,3 +49,19 @@ Contact.jsx
 ---------------------------------------
 1. create basic form page.
 2. use Emailjs to handle emails.
+
+---------------------------------------
+Create fox 
+---------------------------------------
+1. use https://gltf.pmnd.rs/ to convert fox.glb file to jsx component
+2. import foxModel from fox.glb
+3. export and import it inside contact.jsx and set Canvas with camera position, fov, near, far property.
+4. use Fox component inside that providing its position,rotation and scale properties
+5. set directionalLight with intensity and position.
+6. give ambientLight with intensity
+7. define functions to handle idle,running or walking animations
+8. create custom hooks to handle alert banners.
+
+---------------------------------------
+
+---------------------------------------
