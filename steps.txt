@@ -9,7 +9,8 @@ Setup
 5. install @react-three/drei
 6. install @react-spring/three
 7. import asset.zip files from github
-8. 
+8. install emailjs npm i @emailjs/browser
+9. 
 
 
 
@@ -41,4 +42,10 @@ Home.jsx
 9. Add eventlistener in useEffect to listen to move movement for rotation of Island.
 10. setup plane liveliness for rotations.
 11. setup sky movement on rotation.
-12. 
+
+
+---------------------------------------
+Contact.jsx
+---------------------------------------
+1. create basic form page.
+2. use Emailjs to handle emails.
