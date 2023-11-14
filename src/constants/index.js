@@ -191,7 +191,7 @@ export const projects = [
         theme: 'btn-back-black',
         name: 'Admin UI',
         description: "An admin portal to manage list of users. More details on Github and resume.",
-        link: 'https://admin-ui-akshat.netlify.app/e',
+        link: 'https://admin-ui-akshat.netlify.app/',
     },
     {
         iconUrl: estate,

@@ -1,11 +1,11 @@
 import { Suspense, useEffect, useState, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import Loader from "../components/Loader";
+import HomeInfo from "../components/HomeInfo";
 import Island from "../models/Island";
 import Sky from "../models/Sky";
 import Bird from "../models/Bird";
 import Plane from "../models/Plane";
-import HomeInfo from "../components/HomeInfo";
 import sakura from "../assets/sakura.mp3";
 import { soundoff, soundon } from "../assets/icons";
 
@@ -15,7 +15,7 @@ const Home = () => {
   const audioRef = useRef(new Audio(sakura));
   audioRef.current.volume = 0.4;
   audioRef.current.loop = true;
-  const [isPlayingMusic, setIsPlayingMusic] = useState(true);
+  const [isPlayingMusic, setIsPlayingMusic] = useState(false);
 
   useEffect(() => {
     if (isPlayingMusic) {
