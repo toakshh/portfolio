@@ -10,7 +10,7 @@ Setup
 6. install @react-spring/three
 7. import asset.zip files from github
 8. install emailjs npm i @emailjs/browser
-9. 
+9. install react-vertical-timeline-component
 
 
 
