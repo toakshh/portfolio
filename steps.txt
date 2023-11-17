@@ -62,6 +62,23 @@ Create fox
 7. define functions to handle idle,running or walking animations
 8. create custom hooks to handle alert banners.
 
----------------------------------------
+
+
+
+
+
+
+
+
+
+
+
 
 ---------------------------------------
+TODO
+---------------------------------------
+1. Add comments
+2. optimize code
+3. Add download resume button
+4. add news project
+5. fix plane position in small devices
