@@ -2,15 +2,36 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { arrow } from "../assets/icons";
 
-const InfoBox = ({ text, link, btnText }) => (
-  <div className="info-box">
-    <p className="font-medium sm:text-xl text-center">{text}</p>
-    <Link to={link} className="neo-brutalism-white neo-btn">
-      {btnText}
-      <img src={arrow} alt="arrow button" className="w-4 h-4 object-contain" />
-    </Link>
-  </div>
-);
+const InfoBox = ({ text, link, btnText }) => {
+  const downloadResume = () => {
+    const link =
+      "https://drive.google.com/file/d/1Hr8Enay6h_mHCTbcKv1wH0w56KjxwwgU/view?usp=sharing";
+    window.open(link, "_blank");
+  };
+  const handleButtonClick = () => {
+    if (btnText === "Get my resume") {
+      downloadResume();
+    }
+  };
+
+  return (
+    <div className="info-box">
+      <p className="font-medium sm:text-xl text-center">{text}</p>
+      <Link
+        to={link}
+        className="neo-brutalism-white neo-btn"
+        onClick={handleButtonClick}
+      >
+        {btnText}
+        <img
+          src={arrow}
+          alt="arrow button"
+          className="w-4 h-4 object-contain"
+        />
+      </Link>
+    </div>
+  );
+};
 
 const renderContent = {
   1: (
@@ -21,16 +42,16 @@ const renderContent = {
   ),
   2: (
     <InfoBox
-      text="Worked with many companies and picked up many skills around the way"
+      text="Worked on many projects and picked up many skills around the way"
       link="/about"
       btnText="Learn More"
     />
   ),
   3: (
     <InfoBox
-      text="Led multiple projects to success over the years. Curious about the impact?"
-      link="/projects"
-      btnText="Visit my portfolio"
+      text="Get into the details of my projects and resume."
+      link="/project"
+      btnText="Get my resume"
     />
   ),
   4: (

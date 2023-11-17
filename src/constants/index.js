@@ -173,6 +173,13 @@ export const projects = [
         link: 'https://density-ahead-akshat.vercel.app/',
     },
     {
+        iconUrl: summiz,
+        theme: 'btn-back-yellow',
+        name: 'News',
+        description: 'Created news website using React, Redux, Firebase and much more. More details on Github and resume.',
+        link: 'https://news-akshat.netlify.app',
+    },
+    {
         iconUrl: snapgram,
         theme: 'btn-back-blue',
         name: 'Qtify',
