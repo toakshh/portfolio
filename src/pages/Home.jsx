@@ -45,8 +45,8 @@ const Home = () => {
     let screenPosition;
 
     if (window.innerWidth < 768) {
-      screenScale = [1.5, 1.5, 1.5];
-      screenPosition = [-4, -1.5, 0];
+      screenScale = [2, 2, 2];
+      screenPosition = [0, -3.5, 0];
     } else {
       screenScale = [4, 4, 4];
       screenPosition = [0, -6, -4];
@@ -97,7 +97,7 @@ const Home = () => {
           />
         </Suspense>
       </Canvas>
-      <div className="absolute bottom-2 left-2 ">
+      <div className="absolute bottom-20 left-2 sm:bottom-2">
         <img
           src={!isPlayingMusic ? soundoff : soundon}
           className="w-10 h-10 cursor-pointer object-contain"
