@@ -1,5 +1,5 @@
 import React from "react";
-import { skills, experiences } from "../constants";
+import { skills, experiences, socialLinks } from "../constants";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
@@ -10,6 +10,7 @@ import Connect from "../components/Connect";
 const About = () => {
   return (
     <section className="max-container">
+      {/* Intro section */}
       <h1 className="head-text">
         Hi, I'm &nbsp;
         <span className="blue-gradient_text font-semibold drop-shadow-sm">
@@ -22,10 +23,11 @@ const About = () => {
           hands-on projects.
         </p>
       </div>
+      {/* Skills */}
       <div className="py-10 flex flex-col ">
         <h3 className="subhead-text">My Skills</h3>
         <div className="mt-16 flex flex-wrap gap-12">
-          {skills.map((skill, i) => {
+          {skills?.map((skill, i) => {
             return (
               <div className="block-container w-20 h-20 " key={skill.name + i}>
                 <div className="btn-back rounded-xl" />
@@ -42,6 +44,7 @@ const About = () => {
         </div>
       </div>
 
+      {/* Experience */}
       <div className="py-16 ">
         <h3 className="subhead-text">Work Experience</h3>
         <div className="mt-4 flex flex-col gap-3 text-slate-500">
@@ -52,7 +55,7 @@ const About = () => {
         </div>
         <div className="mt-12 flex ">
           <VerticalTimeline>
-            {experiences.map((exp, index) => {
+            {experiences?.map((exp, index) => {
               return (
                 <VerticalTimelineElement
                   key={exp.company_name + index}
@@ -101,6 +104,30 @@ const About = () => {
           </VerticalTimeline>
         </div>
       </div>
+      {/* Social media */}
+      <hr className="border-slate-200" />
+      <div className="flex gap-10">
+        {socialLinks?.map((link, i) => {
+          return (
+            <a
+              className="block-container w-20 h-20 my-5 cursor-pointer"
+              key={link.name + i}
+              target="_blank"
+              href={link.link}
+            >
+              <div className="btn-front rounded-xl flex justify-center items-center">
+                <img
+                  src={link.iconUrl}
+                  alt={link.name}
+                  className="w-1/2 h-1/2 object-contain"
+                />
+                {link.name}
+              </div>
+            </a>
+          );
+        })}
+      </div>
+      {/* Connect me */}
       <hr className="border-slate-200" />
       <Connect />
     </section>

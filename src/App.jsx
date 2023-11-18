@@ -33,8 +33,9 @@ const App = () => {
         <Navbar />
         <Suspense
           fallback={
+            // Loader animation
             <div className="flex justify-center items-center min-h-screen">
-              <div className="w-16 h-16 border-4 border-opacity-40 border-blue-400 border-t-green-800 rounded-full animate-ping"></div>
+              <div className="w-16 h-16 border-4 border-opacity-40 border-blue-400 border-t-blue-400 rounded-full animate-ping"></div>
             </div>
           }
         >

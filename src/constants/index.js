@@ -18,7 +18,6 @@ import {
     pricewise,
     react,
     redux,
-    sass,
     snapgram,
     summiz,
     tailwindcss,
@@ -91,11 +90,6 @@ export const skills = [
         imageUrl: redux,
         name: "Redux",
         type: "State Management",
-    },
-    {
-        imageUrl: sass,
-        name: "Sass",
-        type: "Frontend",
     },
     {
         imageUrl: tailwindcss,

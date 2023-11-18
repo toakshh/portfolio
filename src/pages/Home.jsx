@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState, useRef } from "react";
+import { Suspense, useEffect, useState, useRef, useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
 import Loader from "../components/Loader";
 import HomeInfo from "../components/HomeInfo";
@@ -10,12 +10,13 @@ import sakura from "../assets/sakura.mp3";
 import { soundoff, soundon } from "../assets/icons";
 
 const Home = () => {
-  const [isRotating, setIsRotating] = useState(false);
-  const [currentStage, setCurrentStage] = useState(1);
+  const [isRotating, setIsRotating] = useState(false); //Tracks if model is still or rotating
+  const [currentStage, setCurrentStage] = useState(1); //Sets Geo points locator in island
+  const [isPlayingMusic, setIsPlayingMusic] = useState(false); //Tracks music button mute status
+  // Loading audio
   const audioRef = useRef(new Audio(sakura));
   audioRef.current.volume = 0.4;
   audioRef.current.loop = true;
-  const [isPlayingMusic, setIsPlayingMusic] = useState(false);
 
   useEffect(() => {
     if (isPlayingMusic) {
@@ -26,9 +27,8 @@ const Home = () => {
   }, [isPlayingMusic]);
 
   // Scales 3d model for diffrent screensize devices
-  const adjustIslandForScreenSize = () => {
+  const adjustIslandForScreenSize = useMemo(() => {
     let screenScale = null;
-    // let screenPosition = [0, -10, -43];
     let screenPosition = [0, -6, -43];
     let rotation = [0.1, 4.7, 0];
 
@@ -38,9 +38,9 @@ const Home = () => {
       screenScale = [1.1, 1.1, 1.1];
     }
     return [screenScale, screenPosition, rotation];
-  };
+  }, [window.innerWidth]);
 
-  const adjustPlaneForScreenSize = () => {
+  const adjustPlaneForScreenSize = useMemo(() => {
     let screenScale;
     let screenPosition;
 
@@ -52,16 +52,19 @@ const Home = () => {
       screenPosition = [0, -6, -4];
     }
     return [screenScale, screenPosition];
-  };
+  }, [window.innerWidth]);
 
   const [islandScale, islandPosition, islandRotation] =
-    adjustIslandForScreenSize();
-  const [planeScale, planePosition] = adjustPlaneForScreenSize();
+    adjustIslandForScreenSize;
+  const [planeScale, planePosition] = adjustPlaneForScreenSize;
+
   return (
     <section className="w-full h-screen relative">
+      {/* Blue banner */}
       <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
         {currentStage && <HomeInfo currentStage={currentStage} />}
       </div>
+      {/* 3d scene */}
       <Canvas
         className={`w-full h-screen bg-transparent ${
           isRotating ? "cursor-grabbing" : "cursor-grab"
@@ -97,7 +100,8 @@ const Home = () => {
           />
         </Suspense>
       </Canvas>
-      <div className="absolute bottom-20 left-2 sm:bottom-2">
+      {/* Music control button */}
+      <div className="fixed bottom-2 left-2">
         <img
           src={!isPlayingMusic ? soundoff : soundon}
           className="w-10 h-10 cursor-pointer object-contain"

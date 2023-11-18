@@ -1,4 +1,4 @@
-import React, { Suspense, useRef, useState } from "react";
+import React, { Suspense, useCallback, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { Canvas } from "@react-three/fiber";
 import Loader from "../components/Loader";
@@ -12,14 +12,15 @@ const Contact = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [currentAnimation, setCurrentAnimation] = useState("idle");
 
+  // custom hook
   const { alert, showAlert, hideAlert } = useAlert();
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-  const handleFocus = () => setCurrentAnimation("walk");
-
-  const handleBlur = () => setCurrentAnimation("idle");
+  const handleChange = useCallback(
+    (e) => setForm({ ...form, [e.target.name]: e.target.value }),
+    [form]
+  );
+  const handleFocus = useCallback(() => setCurrentAnimation("walk"), []);
+  const handleBlur = useCallback(() => setCurrentAnimation("idle"), []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -69,9 +70,9 @@ const Contact = () => {
   };
 
   return (
-    <section className="relative flex lg:flex-row flex-col max-container">
+    <section className="relative flex md:flex-row flex-col max-container">
       {alert.show && <Alert {...alert} />}
-      {/* <Alert {...alert} /> */}
+      {/* Contact form */}
       <div className="flex-1 min-w-[50%] flex flex-col">
         <h1 className="head-text">Get in Touch</h1>
         <form
@@ -102,7 +103,7 @@ const Contact = () => {
               Email
             </label>
             <input
-              type="text"
+              type="email"
               name="email"
               className="input"
               id="email"
@@ -145,6 +146,7 @@ const Contact = () => {
           </button>
         </form>
       </div>
+      {/* 3D model */}
       <div className="lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px]">
         <Canvas camera={{ position: [0, 0, 5], fov: 75, near: 0.1, far: 1000 }}>
           <directionalLight intensity={2.5} position={[0, 0, 1]} />

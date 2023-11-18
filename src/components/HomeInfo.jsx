@@ -1,13 +1,14 @@
-import React from "react";
+import React, { memo, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { arrow } from "../assets/icons";
 
+// Schema for renderContent items
 const InfoBox = ({ text, link, btnText }) => {
-  const downloadResume = () => {
+  const downloadResume = useCallback(() => {
     const link =
       "https://drive.google.com/file/d/1Hr8Enay6h_mHCTbcKv1wH0w56KjxwwgU/view?usp=sharing";
     window.open(link, "_blank");
-  };
+  }, []);
   const handleButtonClick = () => {
     if (btnText === "Get my resume") {
       downloadResume();
@@ -67,4 +68,4 @@ const HomeInfo = ({ currentStage }) => {
   return renderContent[currentStage] || null;
 };
 
-export default HomeInfo;
+export default memo(HomeInfo);

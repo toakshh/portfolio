@@ -60,6 +60,7 @@ const Project = () => {
         ))}
       </div>
       <hr className="border-slate-200" />
+      {/* Contact me section */}
       <Connect />
     </section>
   );

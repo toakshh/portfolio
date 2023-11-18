@@ -79,6 +79,6 @@ TODO
 ---------------------------------------
 1. Add comments
 2. optimize code
-3. Add download resume button
+3. Add download resume button=
 4. add news project=
 5. fix plane position in small devices=
