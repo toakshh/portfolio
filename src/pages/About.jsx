@@ -115,11 +115,11 @@ const About = () => {
               target="_blank"
               href={link.link}
             >
-              <div className="btn-front rounded-xl flex justify-center items-center">
+              <div className="btn-front rounded-lg  md:flex-nowrap flex-col flex justify-center items-center">
                 <img
                   src={link.iconUrl}
                   alt={link.name}
-                  className="w-1/2 h-1/2 object-contain"
+                  className="w-5 h-5 object-contain"
                 />
                 {link.name}
               </div>

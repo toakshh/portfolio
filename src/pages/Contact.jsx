@@ -11,6 +11,11 @@ const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [isLoading, setIsLoading] = useState(false);
   const [currentAnimation, setCurrentAnimation] = useState("idle");
+  const [userInfo, setUserInfo] = useState({
+    ip: "",
+    loc: "",
+    userPlatform: "",
+  });
 
   // custom hook
   const { alert, showAlert, hideAlert } = useAlert();
@@ -21,6 +26,17 @@ const Contact = () => {
   );
   const handleFocus = useCallback(() => setCurrentAnimation("walk"), []);
   const handleBlur = useCallback(() => setCurrentAnimation("idle"), []);
+
+  // get location and info of user
+  async function getIPAddress() {
+    const response = await fetch("https://ipinfo.io/json");
+    const data = await response.json();
+    setUserInfo({
+      ip: `${data.ip}`,
+      loc: `${data.loc}`,
+      userPlatform: `${navigator.userAgent}`,
+    });
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,11 +52,13 @@ const Contact = () => {
           to_name: "Akshat",
           from_email: form.email,
           to_email: "toakshh@gmail.com",
-          message: form.message,
+          message: `SENDER DETAILS: ${userInfo} ----- \n ----- SENDER MESSAGE: ${form.message}`,
         },
         import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
       )
       .then(() => {
+        getIPAddress();
+
         setIsLoading(false);
         //show success message
         showAlert({

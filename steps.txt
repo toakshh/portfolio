@@ -77,8 +77,12 @@ Create fox
 ---------------------------------------
 TODO
 ---------------------------------------
-1. Add comments
-2. optimize code
+1. Add comments=
+2. optimize code=
 3. Add download resume button=
 4. add news project=
 5. fix plane position in small devices=
+6. fix social links size in small devices
+7. Make island interactive on mobile touch
+8. added sender traces
+9. 
