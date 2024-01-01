@@ -17,12 +17,7 @@ const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [isLoading, setIsLoading] = useState(false);
   const [currentAnimation, setCurrentAnimation] = useState("idle");
-  const [userInfo, setUserInfo] = useState({
-    ip: "data.ip",
-    loc: "",
-    city: "data.city",
-    org: "data.org",
-  });
+  const [userInfo, setUserInfo] = useState(null);
 
   // custom hook
   const { alert, showAlert, hideAlert } = useAlert();
@@ -41,12 +36,7 @@ const Contact = () => {
         `https://ipinfo.io?token=${import.meta.env.VITE_APP_IPINFO_API_KEY}`
       );
       const data = await response.json();
-      setUserInfo({
-        ip: data.ip,
-        loc: data.loc,
-        city: data.city,
-        org: data.org,
-      });
+      setUserInfo(data);
     } catch (e) {
       console.log("error while fetching visitor detials ===> ", e);
     }
@@ -60,6 +50,16 @@ const Contact = () => {
     e.preventDefault();
     setIsLoading(true);
     setCurrentAnimation("hit");
+    const formattedMessage = `SENDER DETAILS:
+  - IP: ${userInfo.ip},
+  - Location: ${userInfo.loc},
+  - City: ${userInfo.city},
+  - Organization: ${userInfo.org}
+
+    USER PLATFORM: ${navigator.userAgent}
+
+    SENDER MESSAGE: ${form.message}`;
+
     emailjs
       .send(
         import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
@@ -69,7 +69,7 @@ const Contact = () => {
           to_name: "Akshat",
           from_email: form.email,
           to_email: import.meta.env.VITE_APP_OWNER_EMAIL_ID,
-          message: `SENDER DETAILS: ${userInfo} \n USER PLATFORM:${navigator.userAgent} \n \n SENDER MESSAGE: ${form.message}`,
+          message: formattedMessage,
         },
         import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
       )
