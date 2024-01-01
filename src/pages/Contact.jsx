@@ -17,7 +17,12 @@ const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [isLoading, setIsLoading] = useState(false);
   const [currentAnimation, setCurrentAnimation] = useState("idle");
-  const [userInfo, setUserInfo] = useState({});
+  const [userInfo, setUserInfo] = useState({
+    ip: "data.ip",
+    loc: "",
+    city: "data.city",
+    org: "data.org",
+  });
 
   // custom hook
   const { alert, showAlert, hideAlert } = useAlert();
@@ -36,8 +41,12 @@ const Contact = () => {
         `https://ipinfo.io?token=${import.meta.env.VITE_APP_IPINFO_API_KEY}`
       );
       const data = await response.json();
-      console.log(data);
-      setUserInfo(data);
+      setUserInfo({
+        ip: data.ip,
+        loc: data.loc,
+        city: data.city,
+        org: data.org,
+      });
     } catch (e) {
       console.log("error while fetching visitor detials ===> ", e);
     }
@@ -46,8 +55,6 @@ const Contact = () => {
   useEffect(() => {
     getIPAddress();
   }, []);
-
-  console.log(userInfo);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
