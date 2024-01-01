@@ -1,4 +1,10 @@
-import React, { Suspense, useCallback, useRef, useState } from "react";
+import React, {
+  Suspense,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import emailjs from "@emailjs/browser";
 import { Canvas } from "@react-three/fiber";
 import Loader from "../components/Loader";
@@ -11,11 +17,7 @@ const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [isLoading, setIsLoading] = useState(false);
   const [currentAnimation, setCurrentAnimation] = useState("idle");
-  const [userInfo, setUserInfo] = useState({
-    ip: "",
-    loc: "",
-    userPlatform: "",
-  });
+  const [userInfo, setUserInfo] = useState(null);
 
   // custom hook
   const { alert, showAlert, hideAlert } = useAlert();
@@ -29,17 +31,20 @@ const Contact = () => {
 
   // get location and info of user
   async function getIPAddress() {
-    const response = await fetch("https://ipinfo.io/json");
-    const data = await response.json();
-    setUserInfo({
-      ip: `${data.ip}`,
-      loc: `${data.loc}`,
-      userPlatform: `${navigator.userAgent}`,
-    });
+    try {
+      const response = await fetch(
+        `https://ipinfo.io?token=${import.meta.env.VITE_APP_IPINFO_API_KEY}`
+      );
+      const data = await response.json();
+      setUserInfo(data);
+    } catch (e) {
+      console.log("error while fetching visitor detials ===> ", e);
+    }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    getIPAddress();
     setIsLoading(true);
     setCurrentAnimation("hit");
 
@@ -52,13 +57,11 @@ const Contact = () => {
           to_name: "Akshat",
           from_email: form.email,
           to_email: "toakshh@gmail.com",
-          message: `SENDER DETAILS: ${userInfo} ----- \n ----- SENDER MESSAGE: ${form.message}`,
+          message: `SENDER DETAILS: ${userInfo} \n USER PLATFORM:${navigator.userAgent} \n \n SENDER MESSAGE: ${form.message}`,
         },
         import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
       )
       .then(() => {
-        getIPAddress();
-
         setIsLoading(false);
         //show success message
         showAlert({
