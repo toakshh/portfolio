@@ -42,12 +42,11 @@ const Contact = () => {
     }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    getIPAddress();
+    await getIPAddress();
     setIsLoading(true);
     setCurrentAnimation("hit");
-
     emailjs
       .send(
         import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
@@ -75,7 +74,7 @@ const Contact = () => {
           hideAlert(false);
           setForm({ name: "", email: "", message: "" });
           setCurrentAnimation("idle");
-        }, [3000]);
+        }, [1500]);
       })
       .catch((e) => {
         setIsLoading(false);
