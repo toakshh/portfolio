@@ -47,49 +47,46 @@ const Contact = () => {
     await getIPAddress();
     setIsLoading(true);
     setCurrentAnimation("hit");
-    // wait for userInfo to be !null then send message
-    if (userInfo) {
-      emailjs
-        .send(
-          import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-          import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-          {
-            from_name: form.name,
-            to_name: "Akshat",
-            from_email: form.email,
-            to_email: import.meta.env.VITE_APP_OWNER_EMAIL_ID,
-            message: `SENDER DETAILS: ${userInfo} \n USER PLATFORM:${navigator.userAgent} \n \n SENDER MESSAGE: ${form.message}`,
-          },
-          import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
-        )
-        .then(() => {
-          setIsLoading(false);
-          //show success message
-          showAlert({
-            show: true,
-            text: "Thanks for the message",
-            type: "success",
-          });
-
-          setTimeout(() => {
-            //Hide the alert
-            hideAlert(false);
-            setForm({ name: "", email: "", message: "" });
-            setCurrentAnimation("idle");
-          }, [1500]);
-        })
-        .catch((e) => {
-          setIsLoading(false);
-          setCurrentAnimation("idle");
-          console.log(e);
-          // Show error msg
-          showAlert({
-            show: true,
-            text: "Oops! It seems your message wasn't sent successfully. Try again or mail at : toakshh@gmail.com",
-            type: "danger",
-          });
+    emailjs
+      .send(
+        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: form.name,
+          to_name: "Akshat",
+          from_email: form.email,
+          to_email: import.meta.env.VITE_APP_OWNER_EMAIL_ID,
+          message: `SENDER DETAILS: ${userInfo} \n USER PLATFORM:${navigator.userAgent} \n \n SENDER MESSAGE: ${form.message}`,
+        },
+        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+      )
+      .then(() => {
+        setIsLoading(false);
+        //show success message
+        showAlert({
+          show: true,
+          text: "Thanks for the message",
+          type: "success",
         });
-    }
+
+        setTimeout(() => {
+          //Hide the alert
+          hideAlert(false);
+          setForm({ name: "", email: "", message: "" });
+          setCurrentAnimation("idle");
+        }, [1500]);
+      })
+      .catch((e) => {
+        setIsLoading(false);
+        setCurrentAnimation("idle");
+        console.log(e);
+        // Show error msg
+        showAlert({
+          show: true,
+          text: "Oops! It seems your message wasn't sent successfully. Try again or mail at : toakshh@gmail.com",
+          type: "danger",
+        });
+      });
   };
 
   return (
