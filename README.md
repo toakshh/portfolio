@@ -51,4 +51,4 @@ This portfolio website, built using React and Vite, showcases a modern and inter
 
 - Includes ESLint rules for code quality.
 - The existing README provides basic information about using React with Vite.
-- use this link to download [https://drive.google.com/drive/folders/1qGBkBfBAPwCVRHyF_bIF-VBJ3YvGW6aB?usp=sharing](assets)
+- use this link to download [assets](https://drive.google.com/drive/folders/1qGBkBfBAPwCVRHyF_bIF-VBJ3YvGW6aB?usp=sharing)
