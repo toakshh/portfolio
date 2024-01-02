@@ -6,15 +6,18 @@ import Island from "../models/Island";
 import Sky from "../models/Sky";
 import Bird from "../models/Bird";
 import Plane from "../models/Plane";
-import sakura from "../assets/sakura.mp3";
 import { soundoff, soundon } from "../assets/icons";
 
 const Home = () => {
   const [isRotating, setIsRotating] = useState(false); //Tracks if model is still or rotating
   const [currentStage, setCurrentStage] = useState(1); //Sets Geo points locator in island
-  const [isPlayingMusic, setIsPlayingMusic] = useState(false); //Tracks music button mute status
+  const [isPlayingMusic, setIsPlayingMusic] = useState(true); //Tracks music button mute status
   // Loading audio
-  const audioRef = useRef(new Audio(sakura));
+  const audioRef = useRef(
+    new Audio(
+      "https://res.cloudinary.com/dnhe1k7hk/video/upload/f_auto:video,q_auto/v1/portfolio%20assets/assets/y5iqbjptzgdqiwkvccqf"
+    )
+  );
   audioRef.current.volume = 0.4;
   audioRef.current.loop = true;
 
@@ -24,6 +27,10 @@ const Home = () => {
     } else {
       audioRef.current.pause();
     }
+
+    return () => {
+      audioRef.current.pause();
+    };
   }, [isPlayingMusic]);
 
   // Scales 3d model for diffrent screensize devices
@@ -95,7 +102,6 @@ const Home = () => {
           <Plane
             position={planePosition}
             scale={planeScale}
-            isRotating={isRotating}
             rotation={[0, 20, 0.4]}
           />
         </Suspense>

@@ -5,25 +5,31 @@ This portfolio website, built using React and Vite, showcases a modern and inter
 ## Key Features
 
 ### Home Page
+
 - Utilizes React Three Fiber for 3D models and animations.
 - Interactive elements like a rotating island, flying birds, and a plane.
 - Music player integration.
 
 ### About Page
+
 - Presents skills and experiences in a visually appealing format.
 - Uses a vertical timeline and skill icons to display information.
 
 ### Contact Page
+
 - Features a contact form with EmailJS integration.
 - Includes a 3D animated fox model that responds to form interactions.
 
 ### Project Page
+
 - Showcases various projects with descriptions, images, and links to live demos.
 
 ### Components
+
 - Reusable components like Navbar, Loader, Connect, HomeInfo, and Alert.
 
 ### 3D Models
+
 - Custom 3D models like Bird, Fox, Island, Plane, and Sky.
 
 ## Technologies Used
@@ -45,3 +51,4 @@ This portfolio website, built using React and Vite, showcases a modern and inter
 
 - Includes ESLint rules for code quality.
 - The existing README provides basic information about using React with Vite.
+- use this link to download [https://drive.google.com/drive/folders/1qGBkBfBAPwCVRHyF_bIF-VBJ3YvGW6aB?usp=sharing](assets)

@@ -8,11 +8,11 @@ Title: Fox
 
 import React, { useEffect, useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
-import foxModel from "../assets/3d/fox.glb";
+import { assestsCloudinaryLinks } from "../constants";
 
 const Fox = ({ currentAnimation, ...props }) => {
   const group = useRef();
-  const { nodes, materials, animations } = useGLTF(foxModel);
+  const { nodes, materials, animations } = useGLTF(assestsCloudinaryLinks.fox);
   const { actions } = useAnimations(animations, group);
 
   useEffect(() => {

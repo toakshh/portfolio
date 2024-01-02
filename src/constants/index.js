@@ -25,6 +25,14 @@ import {
     typescript
 } from "../assets/icons";
 
+export const assestsCloudinaryLinks = {
+    plane: "https://res.cloudinary.com/dnhe1k7hk/image/upload/v1704182222/portfolio%20assets/assets/3d/ycxstfu3b5lcy8hf5lnp.glb",
+    sky: "https://res.cloudinary.com/dnhe1k7hk/image/upload/v1704182221/portfolio%20assets/assets/3d/ataabip1dwcqwqxvgyuw.glb",
+    bird: "https://res.cloudinary.com/dnhe1k7hk/image/upload/v1704182232/portfolio%20assets/assets/3d/oq7ujgfdihqkhqsgdhco.glb",
+    fox: "https://res.cloudinary.com/dnhe1k7hk/image/upload/v1704182221/portfolio%20assets/assets/3d/aihxq2poegnzjsephvdh.glb",
+    island: "https://res.cloudinary.com/dnhe1k7hk/image/upload/v1704182225/portfolio%20assets/assets/3d/m8vhixa1jgtwk6tjqg0s.glb",
+}
+
 export const skills = [
     {
         imageUrl: css,

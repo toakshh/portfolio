@@ -7,13 +7,13 @@ Source: https://sketchfab.com/3d-models/foxs-islands-163b68e09fcc47618450150be77
 Title: Fox's islands
 */
 import { a } from "@react-spring/three";
-import React, { useRef, useEffect, memo, useMemo } from "react";
+import React, { useRef, useEffect, memo } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import islandScene from "../assets/3d/island.glb";
+import { assestsCloudinaryLinks } from "../constants";
 
 const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
-  const { nodes, materials } = useGLTF(islandScene);
+  const { nodes, materials } = useGLTF(assestsCloudinaryLinks.island);
   const islandRef = useRef();
   const { gl, viewport } = useThree();
   const lastX = useRef(0);
@@ -58,14 +58,12 @@ const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
       // islandRef.current.rotation.y -= 0.05 * Math.PI;
       rotationSpeed.current = -0.007 * 5;
     }
-    console.log("second");
   };
 
   const handleKeyUp = (e) => {
     if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
       setIsRotating(false);
     }
-    console.log("third");
   };
 
   useEffect(() => {
