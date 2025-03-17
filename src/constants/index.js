@@ -1,4 +1,4 @@
-import { crio } from "../assets/images";
+import { crio, zimension } from "../assets/images";
 import {
     car,
     contact,
@@ -22,7 +22,8 @@ import {
     summiz,
     tailwindcss,
     threads,
-    typescript
+    typescript,
+    python
 } from "../assets/icons";
 
 export const assestsCloudinaryLinks = {
@@ -65,13 +66,18 @@ export const skills = [
         type: "Frontend",
     },
     {
+        imageUrl: react,
+        name: "React Native",
+        type: "Mobile Apps",
+    },
+    {
         imageUrl: mongodb,
         name: "MongoDB",
         type: "Database",
     },
     {
         imageUrl: motion,
-        name: "Motion",
+        name: "Framer Motion",
         type: "Animation",
     },
     {
@@ -108,10 +114,28 @@ export const skills = [
         imageUrl: typescript,
         name: "TypeScript",
         type: "Frontend",
+    },
+    {
+        imageUrl: python,
+        name: "Python",
+        type: "language",
     }
 ];
 
 export const experiences = [
+    {
+        title: "Frontend Developer",
+        company_name: "Zimension 3D Technologies",
+        icon: zimension,
+        iconBg: "#fbc3bc",
+        date: "Oct 2023 - Feb 2024",
+        points: [
+            "Led the development of 5+ projects using React and Next.js, focusing on performance optimization, responsive design, and cross-browser compatibility.",
+            "Improved user experience by implementing UI enhancements, fixing bugs, and ensuring seamless functionality across devices.",
+            "Enhanced website accessibility by adhering to modern web standards and optimizing code for better performance.",
+            "Collaborated with cross-functional teams to deliver high-quality, scalable, and maintainable web applications."
+        ],
+    },
     {
         title: "Fullstack Developer",
         company_name: "Crio (intern)",
@@ -137,8 +161,7 @@ export const experiences = [
     //         "Implementing responsive design and ensuring cross-browser compatibility.",
     //         "Participating in code reviews and providing constructive feedback to other developers.",
     //     ],
-    // },
-
+    // }
 ];
 
 export const socialLinks = [

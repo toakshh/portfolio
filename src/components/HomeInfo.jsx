@@ -6,7 +6,7 @@ import { arrow } from "../assets/icons";
 const InfoBox = ({ text, link, btnText }) => {
   const downloadResume = useCallback(() => {
     const link =
-      "https://drive.google.com/file/d/1Hr8Enay6h_mHCTbcKv1wH0w56KjxwwgU/view?usp=sharing";
+      "https://drive.google.com/file/d/1YM4HCDXkLcz3FSUw_oroeG6rrq-b5upc/view?usp=sharing";
     window.open(link, "_blank");
   }, []);
   const handleButtonClick = () => {

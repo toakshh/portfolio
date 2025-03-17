@@ -16,7 +16,7 @@ const Home = () => {
   const audioRef = useRef(
     new Audio(
       "https://res.cloudinary.com/dnhe1k7hk/video/upload/f_auto:video,q_auto/v1/portfolio%20assets/assets/y5iqbjptzgdqiwkvccqf"
-    )
+    ) 
   );
   audioRef.current.volume = 0.4;
   audioRef.current.loop = true;

@@ -92,7 +92,7 @@ const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
     if (!isRotating) {
       rotationSpeed.current *= dampingFactor;
       if (Math.abs(rotationSpeed.current) < 0.001) {
-        rotationSpeed.current = 0;
+        rotationSpeed.current = -0.0005;
       }
 
       // smooth effect / slowing down of speed
