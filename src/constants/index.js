@@ -152,7 +152,7 @@ export const experiences = [
     {
         title: "React Native Developer",
         company_name: "Freelancer",
-        icon: tesla,
+        icon: crio,
         iconBg: "#fbc3bc",
         date: "Currently Working",
         points: [
