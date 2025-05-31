@@ -5,8 +5,7 @@ import { arrow } from "../assets/icons";
 // Schema for renderContent items
 const InfoBox = ({ text, link, btnText }) => {
   const downloadResume = useCallback(() => {
-    const link =
-      "https://drive.google.com/file/d/1YM4HCDXkLcz3FSUw_oroeG6rrq-b5upc/view?usp=sharing";
+    const link = import.meta.env.VITE_APP_REACT_APP_RESUME_URL;
     window.open(link, "_blank");
   }, []);
   const handleButtonClick = () => {
