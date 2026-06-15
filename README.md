@@ -1,54 +1,44 @@
-# Portfolio Website
+# Akshat Anand — Portfolio
 
-This portfolio website, built using React and Vite, showcases a modern and interactive user interface. It's a comprehensive portfolio for a web developer, featuring various pages and components.
+A bold, editorial, interactive portfolio for a software engineer working across
+full-stack systems, AI platforms, real-time architecture and 3D web. Built with
+React + Vite, a hand-written GLSL shader centerpiece, and a CSS + IntersectionObserver
+motion layer (no heavy animation dependencies).
 
-## Key Features
+## Design
 
-### Home Page
+Restrained editorial system — warm near-black ink, paper-white type and a single
+ember accent — with Fraunces (display serif), Inter (UI) and JetBrains Mono (labels),
+film-grain texture, a blend-mode cursor with contextual labels, magnetic CTAs,
+line-by-line heading reveals, a scroll-progress bar and smooth marquees.
 
-- Utilizes React Three Fiber for 3D models and animations.
-- Interactive elements like a rotating island, flying birds, and a plane.
-- Music player integration.
+## Sections
 
-### About Page
+- **Hero** — a custom shader "core": simplex-noise vertex displacement with
+  recomputed normals, fresnel rim and a warm holographic palette, mouse-reactive,
+  wrapped in an additive particle field. Oversized serif name with on-load reveal.
+- **About** — editorial statement with animated count-up statistics.
+- **Skills** — full-bleed logo marquee + categorized list with grayscale→colour hovers.
+- **Experience** — accordion timeline with quantified achievements + education strip.
+- **Projects** — editorial work-list with hover motion and a contextual "GitHub" cursor.
+- **Contact** — big CTA with a minimal underline form (EmailJS).
 
-- Presents skills and experiences in a visually appealing format.
-- Uses a vertical timeline and skill icons to display information.
+## Tech
 
-### Contact Page
+React 18 · Vite · Tailwind CSS · React Three Fiber · @react-three/drei · Three.js · GLSL · EmailJS
 
-- Features a contact form with EmailJS integration.
-- Includes a 3D animated fox model that responds to form interactions.
+## Content
 
-### Project Page
+All copy lives in `src/constants/index.js`. Tech logos load at runtime from public
+CDNs (devicon / simpleicons) with an automatic monogram fallback.
 
-- Showcases various projects with descriptions, images, and links to live demos.
+## Run
 
-### Components
+```bash
+npm install     # run on your machine if node_modules was copied across OSes
+npm run dev
+npm run build
+```
 
-- Reusable components like Navbar, Loader, Connect, HomeInfo, and Alert.
-
-### 3D Models
-
-- Custom 3D models like Bird, Fox, Island, Plane, and Sky.
-
-## Technologies Used
-
-- React.js
-- Vite
-- Tailwind CSS
-- React Three Fiber
-- EmailJS
-- React Router
-
-## Configuration and Setup
-
-- Uses Vite for bundling (`vite.config.js`).
-- Tailwind CSS for styling.
-- Environment variables for EmailJS configuration (`.env.sample`).
-
-## Development Notes
-
-- Includes ESLint rules for code quality.
-- The existing README provides basic information about using React with Vite.
-- use this link to download [assets](https://drive.google.com/drive/folders/1qGBkBfBAPwCVRHyF_bIF-VBJ3YvGW6aB?usp=sharing)
+Résumé is served from `public/Akshat_Anand_Resume.pdf`. EmailJS keys go in `.env`
+(see `.env.sample`). Deployed via Vercel.

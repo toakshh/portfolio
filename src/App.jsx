@@ -1,53 +1,32 @@
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Cursor from "./components/Cursor";
+import Grain from "./components/Grain";
+import ScrollProgress from "./components/ScrollProgress";
 import Navbar from "./components/Navbar";
-import { Suspense, lazy } from "react";
-const Home = lazy(() => import("./pages/Home"));
-const About = lazy(() => import("./pages/About"));
-const Contact = lazy(() => import("./pages/Contact"));
-const Project = lazy(() => import("./pages/Project"));
-// const router = createBrowserRouter([
-//     {
-//       path: "/",
-//       element: "HOme",
-//       children: [
-//         {
-//           path: "about",
-//           element: "ABout",
-//         },
-//         {
-//           path: "contacts",
-//           element: "Contacts",
-//         },
-//         {
-//           path: "projects",
-//           element: "Projects",
-//         },
-//       ],
-//     },
-//   ]);
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Skills from "./components/Skills";
+import Experience from "./components/Experience";
+import Projects from "./components/Projects";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
-    <main className="bg-slate-300/20 ">
-      <Router>
-        <Navbar />
-        <Suspense
-          fallback={
-            // Loader animation
-            <div className="flex justify-center items-center min-h-screen">
-              <div className="w-16 h-16 border-4 border-opacity-40 border-blue-400 border-t-blue-400 rounded-full animate-ping"></div>
-            </div>
-          }
-        >
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/project" element={<Project />} />
-          </Routes>
-        </Suspense>
-      </Router>
-    </main>
+    <div className="relative bg-ink text-paper min-h-screen overflow-x-hidden">
+      <Grain />
+      <ScrollProgress />
+      <Cursor />
+      <Navbar />
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <Experience />
+        <Projects />
+        <Contact />
+      </main>
+      <Footer />
+    </div>
   );
 };
 
