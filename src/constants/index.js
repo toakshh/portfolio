@@ -131,7 +131,7 @@ export const experiences = [
   {
     title: "Frontend Developer",
     company: "Zimension 3D Technologies",
-    date: "Mar 2024 — Dec 2024",
+    date: "Mar 2023 — Dec 2024",
     location: "Full-time",
     accent: "#F472B6",
     summary:
